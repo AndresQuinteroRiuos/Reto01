@@ -9,9 +9,15 @@ public class App {
 
     static String[] planetas = { "Marte: Es un planeta frio y oscuro",
             "Jupiter: Es el planeta mas grande del sistema solar",
-            "Neptuno: Es el planeta mas lejano del sistema solar" }; // Nombre del planeta OPCIONAL: que tenga su descripción
+            "Neptuno: Es el planeta mas lejano del sistema solar",
+            "mercurio: Mercurio es el planeta más pequeño del sistema solar con un diámetro de 4,879 km y es uno de los cinco planetas que es visible a simple vista. Después de la Tierra",
+            "venus: Se caracteriza por ser un planta rocoso, sin satélites ni anillos y con una atmósfera muy densa compuesta en mayor proporción de dióxido de carbono",
+            "saturno: Saturno es el sexto planeta desde el Sol, y el último de los planetas conocidos por las civilizaciones antiguas. Era conocido por los babilonios y el observador del Lejano Oriente",
+            "urano:  Urano es un planeta gaseoso con una gran cantidad de metano en su superficie, lo que le confiere un tono azulado" }; // Nombre del planeta OPCIONAL: que tenga su descripción
 
-    static double[] distancias = { 234.0, 56.0, 890.0 }; // Distancia en millones de kilometros
+      
+
+    static double[] distancias = { 225.0, 588.0, 4500.0, 77.0, 41.0, 1.2000, 2.871 }; // Distancia en millones de kilometros
 
     // Definir constantes para códigos de color
     static final String GREEN = "\033[32m"; // Verde para barra de progreso
@@ -48,15 +54,27 @@ public class App {
                     break;
                 case 4:
                     iniciarViaje();
-                    break;
+                    break;  
                 case 5:
-                    System.out.println("Saliendo del programa.......");
+                    monitorearEstadoViaje();
+                    break;                    
+                case 6:
+                    simularEventosinconvenientes();
                     break;
+                case 7:
+                    System.out.println("Saliendo del programa.......");
+                   break;     
+                                
+                
+                
+                
+                
+                  
                 default:
                     System.out.println("Opción no validad  !!!!!");
                     break;
             }
-        } while (opcion != 5);
+        } while (opcion !=7);
         sc.close();
     }
 
@@ -66,8 +84,12 @@ public class App {
         System.out.println(BLUE+BOLD + "2)." + RESET + " Naves disponible");
         System.out.println(BLUE+BOLD + "3)." + RESET + " Calcular recursos");
         System.out.println(BLUE+BOLD + "4)." + RESET + " Iniciar Viaje");
-        System.out.println(BLUE+BOLD + "5)." + RESET + " Salir");
+        System.out.println(BLUE+BOLD + "5)." + RESET + " Monitorear el estado del Viaje");
+        System.out.println(BLUE+BOLD + "6)." + RESET + " Simular eventos o inconvenientes");
+        System.out.println(BLUE+BOLD + "7)." + RESET + " Salir");
         System.out.print(BOLD + "Selecciones una opción: " + RESET);
+      
+      
     }
 
     // Selección de planeta
@@ -98,12 +120,38 @@ public class App {
 
     }
 
-    public static void calcularRecursos() {
-
+    public static void gestionarRecursos(double distancia) {
+        // Supongamos que la nave consume 0.1 unidades de combustible por km y 0.05 unidades de oxígeno por km
+        double combustibleNecesario = distancia * 0.55;
+        double oxigenoNecesario = distancia * 0.05;
+        
+        System.out.println("Combustible necesario: " + combustibleNecesario + " unidades");
+        System.out.println("Oxígeno necesario: " + oxigenoNecesario + " unidades");
+        
+        // Permitir al usuario ajustar recursos (se podría implementar una lógica adicional aquí)
     }
+        public static void simularEventosinconvenientes() {
+            // Generar eventos aleatorios (por ejemplo, utilizando la clase Random)
+            System.out.println("Simulación de eventos aleatorios en progreso...");
+            // Lógica de eventos aleatorios aquí
+        }
+       public static void calcularRecursos() {
+    
+       }
+        public static void monitorearEstadoViaje() {
+            // Monitorear el progreso del viaje
+            System.out.println("Monitoreando el estado del viaje...");
+            // Lógica de monitoreo aquí
+        }
+        
+        public static void iniciarViaje() {
+    
+        }
 
-    public static void iniciarViaje() {
+   
 
-    }
+   
+
+   
 
 }
