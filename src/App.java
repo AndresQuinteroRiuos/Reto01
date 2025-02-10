@@ -18,8 +18,14 @@ public class App {
       
 
     static double[] distancias = { 225.0, 588.0, 4500.0, 77.0, 41.0, 1.2000, 2.871 }; // Distancia en millones de kilometros
+    static String[] naves = {
+        "Nave Explorer: Capacidad para 5 personas, velocidad máxima 20,000 km/h",
+        "Nave Voyager: Capacidad para 8 personas, velocidad máxima 25,000 km/h",
+        "Nave Pioneer: Capacidad para 10 personas, velocidad máxima 22,000 km/h"
+    };
+    
 
-    // Definir constantes para códigos de color
+    // Definir constantes para códigos de color+
     static final String GREEN = "\033[32m"; // Verde para barra de progreso
     static final String YELLOW = "\033[33m"; // Amarillo para barra de progreso
     static final String BLUE = "\033[34m"; // Azul para subtitulos
@@ -29,6 +35,7 @@ public class App {
     static final String BRIGHT_BLUE = "\033[94m"; // Azul brillante Titulos
     static final String BRIGHT_GREEN = "\033[92m"; // Verde brillante Soluciones
     static final String UNDERLINE = "\033[4m"; // Subrayado en titulos
+    static final String RED = "\033[32m"; // Rojo para barra de progreso
 
     // Verificación de selección de nave y planeta
     static boolean isPlanetSelected = false; // Verifica si se ha seleccionado un planeta
@@ -64,13 +71,8 @@ public class App {
                 case 7:
                     System.out.println("Saliendo del programa.......");
                    break;     
-                                
-                
-                
-                
-                
-                  
-                default:
+
+                   default:
                     System.out.println("Opción no validad  !!!!!");
                     break;
             }
@@ -117,41 +119,184 @@ public class App {
             System.err.println(ORANGE + "Primero debes seleccionar un planeta destino." + RESET);
             return;
         }
-
+    
+        System.out.println(BOLD + BRIGHT_BLUE + UNDERLINE + "\n\tMenú de Naves Espaciales Disponibles" + RESET + "\n");
+        for (int i = 0; i < naves.length; i++) {
+            System.out.println(BOLD + BRIGHT_BLUE + (i + 1) + "). " + RESET + naves[i]);
+        }
+    
+        System.out.print(BOLD + "Elige el número de tu nave espacial: " + RESET);
+        var seleccion = sc.nextInt();
+    
+        if (seleccion >= 1 && seleccion <= naves.length) {
+            selectedShipIndex = seleccion - 1;
+            System.out.println(BRIGHT_GREEN + "\nHas seleccionado " + naves[selectedShipIndex] + "." + RESET);
+            isShipSelected = true;
+        } else {
+            System.err.println(ORANGE + "Selección no válida. Por favor, intenta de nuevo." + RESET);
+        }
+                               
     }
 
-    public static void gestionarRecursos(double distancia) {
-        // Supongamos que la nave consume 0.1 unidades de combustible por km y 0.05 unidades de oxígeno por km
-        double combustibleNecesario = distancia * 0.55;
-        double oxigenoNecesario = distancia * 0.05;
+    public static void valcularrRecursos(double distancia) {
+        // Supongamos que la nave consume 1.55 unidades de combustible por km y 0.15 unidades de oxígeno por km
+        double combustibleNecesario = distancia * 1.55;
+        double oxigenoNecesario = distancia * 0.15;
         
         System.out.println("Combustible necesario: " + combustibleNecesario + " unidades");
         System.out.println("Oxígeno necesario: " + oxigenoNecesario + " unidades");
         
         // Permitir al usuario ajustar recursos (se podría implementar una lógica adicional aquí)
     }
-        public static void simularEventosinconvenientes() {
-            // Generar eventos aleatorios (por ejemplo, utilizando la clase Random)
-            System.out.println("Simulación de eventos aleatorios en progreso...");
-            // Lógica de eventos aleatorios aquí
+        
+        
+        
+        
+        
+    public static void simularEventosinconvenientes() {
+        if (!isPlanetSelected) {
+            System.err.println(ORANGE + "Primero debes seleccionar un planeta destino." + RESET);
+            return;
         }
-       public static void calcularRecursos() {
+        if (!isShipSelected) {
+            System.err.println(ORANGE + "Primero debes seleccionar una nave espacial." + RESET);
+            return;
+        }
     
-       }
-        public static void monitorearEstadoViaje() {
-            // Monitorear el progreso del viaje
-            System.out.println("Monitoreando el estado del viaje...");
-            // Lógica de monitoreo aquí
+        System.out.println(BRIGHT_GREEN + "\nSimulación de eventos aleatorios en progreso..." + RESET);
+    
+        String[] eventos = {
+            "Tormenta de meteoritos: La nave ha sufrido daños menores.",
+            "Agujero negro cercano: La trayectoria ha sido ligeramente desviada.",
+            "Se detecta una anomalía gravitacional: Velocidad reducida temporalmente.",
+            "Falla en los sistemas de soporte vital: Los sistemas se están reiniciando.",
+            "Encuentro con una nave alienígena: Intercambio de saludos amistosos."
+        };
+    
+        // Generar un evento aleatorio
+        int eventoIndex = r.nextInt(eventos.length);
+    
+        // Mostrar el evento aleatorio generado
+        System.out.println(YELLOW + eventos[eventoIndex] + RESET);
+    
+        // Lógica adicional según el evento (puedes ajustar según necesites)
+        switch (eventoIndex) {
+            case 0: // Tormenta de meteoritos
+                System.out.println(RED + "Reparando daños menores..." + RESET);
+                break;
+            case 1: // Agujero negro cercano
+                System.out.println(BRIGHT_BLUE + "Recalculando trayectoria..." + RESET);
+                break;
+            case 2: // Anomalía gravitacional
+                System.out.println(BRIGHT_BLUE + "Velocidad reducida temporalmente." + RESET);
+                break;
+            case 3: // Falla en los sistemas de soporte vital
+                System.out.println(RED + "Reiniciando sistemas de soporte vital..." + RESET);
+                break;
+            case 4: // Encuentro con una nave alienígena
+                System.out.println(BRIGHT_GREEN + "Intercambio de saludos completado." + RESET);
+                break;
         }
+    }
+    
+       public static void calcularRecursos() {
+    if (!isPlanetSelected) {
+        System.err.println(ORANGE + "Primero debes seleccionar un planeta destino." + RESET);
+        return;
+    }
+    if (!isShipSelected) {
+        System.err.println(ORANGE + "Primero debes seleccionar una nave espacial." + RESET);
+        return;
+    }
+
+    double distancia = distancias[selectedPlanetIndex];
+    double combustibleNecesario = distancia * 1.55; // Suponemos que la nave consume 1.55 unidades de combustible por km
+    double oxigenoNecesario = distancia * 0.15; // Suponemos que la nave consume 0.15 unidades de oxígeno por km
+
+    System.out.println(BRIGHT_BLUE + "\nRecursos necesarios para el viaje a " + planetas[selectedPlanetIndex] + ":" + RESET);
+    System.out.println(BRIGHT_GREEN + "Combustible necesario: " + combustibleNecesario + " unidades" + RESET);
+    System.out.println(BRIGHT_GREEN + "Oxígeno necesario: " + oxigenoNecesario + " unidades" + RESET);
+
+    // Permitir al usuario ajustar recursos (puedes implementar lógica adicional aquí si es necesario)
+}
+
+     
+       public static void monitorearEstadoViaje() {
+        if (!isPlanetSelected) {
+            System.err.println(ORANGE + "Primero debes seleccionar un planeta destino." + RESET);
+            return;
+        }
+        if (!isShipSelected) {
+            System.err.println(ORANGE + "Primero debes seleccionar una nave espacial." + RESET);
+            return;
+        }
+    
+        System.out.println(BRIGHT_GREEN + "Monitoreando el estado del viaje hacia " + planetas[selectedPlanetIndex] + "..." + RESET);
+    
+        double distanciaTotal = distancias[selectedPlanetIndex];
+        double distanciaRecorrida = 0;
+        double velocidad = 100; // Suponiendo una velocidad constante de 100 millones de km por ciclo
+        double combustible = distanciaTotal * 1.55;
+        double oxigeno = distanciaTotal * 0.15;
+    
+        while (distanciaRecorrida < distanciaTotal) {
+            distanciaRecorrida += velocidad;
+    
+            if (distanciaRecorrida > distanciaTotal) {
+                distanciaRecorrida = distanciaTotal;
+            }
+    
+            combustible -= velocidad * 1.55;
+            oxigeno -= velocidad * 0.15;
+    
+            System.out.println(BRIGHT_BLUE + "Progreso del viaje: " + RESET + (distanciaRecorrida / distanciaTotal * 100) + "%");
+            System.out.println(BRIGHT_BLUE + "Combustible restante: " + RESET + combustible + " unidades");
+            System.out.println(BRIGHT_BLUE + "Oxígeno restante: " + RESET + oxigeno + " unidades");
+            
+            try {
+                Thread.sleep(1000); // Pausa de 1 segundo para simular el tiempo de viaje
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    
+        System.out.println(BRIGHT_GREEN + "\n¡El viaje ha sido completado! Has llegado a " + planetas[selectedPlanetIndex] + "." + RESET);
+    }
+  
+       
+       
+       
+        
         
         public static void iniciarViaje() {
+            if (!isPlanetSelected) {
+                System.err.println(ORANGE + "Primero debes seleccionar un planeta destino." + RESET);
+                return;
+            }
+            if (!isShipSelected) {
+                System.err.println(ORANGE + "Primero debes seleccionar una nave espacial." + RESET);
+                return;
+            }
+     System.out.println(BRIGHT_GREEN + "Iniciando el viaje hacia " + planetas[selectedPlanetIndex] + "..." + RESET);
+            
+            // Simular el progreso del viaje
+            for (int i = 0; i <= 100; i += 10) {
+                try {
+                    Thread.sleep(500); // Pausa de medio segundo para simular progreso
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (i < 50) {
+
+                    System.out.print(GREEN + "=" + RESET);
+                } else if (i < 80) {
+                    System.out.print(YELLOW + "=" + RESET);
+                } else {
+                    System.out.print(RED + "=" + RESET);
+                }
+            }
+            System.out.println(BRIGHT_GREEN + "\n¡Has llegado a " + planetas[selectedPlanetIndex] + "!" + RESET);
+        }
+        
     
         }
-
-   
-
-   
-
-   
-
-}
