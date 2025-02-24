@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class App {
+public class SimuladorDeVueloInterplanetario {
 
     // Definir variables globales
     static Scanner sc = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class App {
     
 
     // Definir constantes para códigos de color+
-    static final String GREEN = "\033[32m"; // Verde para barra de progreso
+    static final String GREEN = "\033[32m"; // Verde para barra de progreso11
     static final String YELLOW = "\033[33m"; // Amarillo para barra de progreso
     static final String BLUE = "\033[34m"; // Azul para subtitulos
     static final String ORANGE = "\033[38;5;208m"; // Naranja en las recomendaciones
@@ -146,7 +146,7 @@ public class App {
         System.out.println("Combustible necesario: " + combustibleNecesario + " unidades");
         System.out.println("Oxígeno necesario: " + oxigenoNecesario + " unidades");
         
-        // Permitir al usuario ajustar recursos (se podría implementar una lógica adicional aquí)
+       
     }
         
         
@@ -273,6 +273,7 @@ public class App {
                 System.err.println(ORANGE + "Primero debes seleccionar un planeta destino." + RESET);
                 return;
             }
+            
             if (!isShipSelected) {
                 System.err.println(ORANGE + "Primero debes seleccionar una nave espacial." + RESET);
                 return;
